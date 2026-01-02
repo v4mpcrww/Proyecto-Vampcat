@@ -1,9 +1,9 @@
 <?php
-$equipo= "localhost";
-$namebd= "vampcat";
-$puerto= "5432";
-$usuario= "postgres";
-$clave= "21579550";
+$equipo= "";
+$namebd= "";
+$puerto= "";
+$usuario= "";
+$clave= "";
 
 $conexion= pg_connect("host=$equipo dbname=$namebd port=$puerto user=$usuario password=$clave");
 
