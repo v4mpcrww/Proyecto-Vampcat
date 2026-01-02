@@ -43,7 +43,7 @@ else
 }*/
 
 
-include 'conexion.php';
+/*include 'conexion.php';
 
 if (isset($_POST['id_libro']) && $_POST['id_libro'] !== "") {
 
@@ -97,6 +97,70 @@ if (isset($_POST['id_libro']) && $_POST['id_libro'] !== "") {
 
     if ($insercion) {
         echo "Registro exitoso";
+    } else {
+        echo "Registro fallido";
+    }
+
+} else {
+    echo "Datos incompletos, por favor ingrese lo solicitado";
+}*/
+include 'conexion.php';
+
+if (isset($_POST['titulo']) && $_POST['titulo'] !== "") {
+
+    //$id_libro = $_POST['id_libro'];
+
+    $png = $_POST['png'];
+    $png = ($png == "") ? "NULL" : "'$png'";
+
+    $pais = $_POST['tipo_pais'];
+    $titulo = $_POST['titulo'];
+    $autor = $_POST['autor'];
+
+    $editorial = $_POST['editorial'];
+    $editorial = ($editorial == "") ? "NULL" : "'$editorial'";
+
+    $idioma = $_POST['tipo_idioma'];
+
+    $anio_publicacion = $_POST['anio_publicacion'];
+    $anio_publicacion = ($anio_publicacion == "") ? "NULL" : "'$anio_publicacion'";
+
+    $coleccion = $_POST['tipo_coleccion'];
+    $genero = $_POST['genero'];
+    $personaje = $_POST['personaje'];
+    $resumen = $_POST['resumen'];
+    $valoracion = $_POST['valoracion'];
+
+    $detalles = $_POST['detalles'];
+    $detalles = ($detalles == "") ? "NULL" : "'$detalles'";
+
+    $sql = "
+        INSERT INTO libro
+        (png, pais, titulo, autor, editorial, idioma, anio_publicacion, 
+         coleccion, genero, personaje, resumen, valoracion, detalles)
+        VALUES (
+            $png,
+            '$pais',
+            '$titulo',
+            '$autor',
+            $editorial,
+            '$idioma',
+            $anio_publicacion,
+            '$coleccion',
+            '$genero',
+            '$personaje',
+            '$resumen',
+            '$valoracion',
+            $detalles
+        )
+        RETURNING id_libro;
+    ";
+
+    $insercion = pg_query($conexion, $sql);
+
+    if ($insercion) {
+       $fila = pg_fetch_assoc($insercion);
+        echo "Registro exitoso. ID generado automáticamente: " . $fila['id_libro'];
     } else {
         echo "Registro fallido";
     }
