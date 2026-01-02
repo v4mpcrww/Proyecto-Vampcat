@@ -59,7 +59,7 @@ if (isset($_POST['id_libro']) && $_POST['id_libro'] !== "") {
     $editorial = $_POST['editorial'];
     $editorial = ($editorial == "") ? "NULL" : "'$editorial'";
 
-    $idioma = $_POST['idioma'];
+    $idioma = $_POST['tipo_idioma'];
 
     $anio_publicacion = $_POST['anio_publicacion'];
     $anio_publicacion = ($anio_publicacion == "") ? "NULL" : "'$anio_publicacion'";
@@ -104,6 +104,4 @@ if (isset($_POST['id_libro']) && $_POST['id_libro'] !== "") {
 } else {
     echo "Datos incompletos, por favor ingrese lo solicitado";
 }
-
-
 ?>
